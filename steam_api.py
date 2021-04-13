@@ -87,11 +87,6 @@ def accuracy(json_data, list_of_weapons):
 
     return list_of_weapons
 
-
-        
-
-
-
 if __name__ == "__main__":
     
     data = get_data_from_steam("https://steamcommunity.com/profiles/76561198880579276/")
