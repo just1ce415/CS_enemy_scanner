@@ -6,7 +6,7 @@ def get_data_from_steam(profile_link: str):
     Returns json object with data from Steaam Api
     """
     base_url = "http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/"
-    api_key = "E7AC2400198449D19C57A33307D2D35C"
+    api_key = "your key"
     appid = 730
     playerid = profile_link.split("/")[-2]
     search_url = f"{base_url}?appid={appid}&key={api_key}&steamid={playerid}&format=json"
