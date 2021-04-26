@@ -12,7 +12,7 @@ def get_data_from_steam(profile_link: str):
     search_url = f"{base_url}?appid={appid}&key={api_key}&steamid={playerid}&format=json"
     response = requests.get(search_url)
     json_response = response.json()
-    return json_response
+    return (json_response, playerid)
 
 def kill_death(json_data):
     """
@@ -91,5 +91,5 @@ if __name__ == "__main__":
     
     data = get_data_from_steam("https://steamcommunity.com/profiles/76561198880579276/")
     # print(data)
-    bb = best_weapons_and_total_kills(data)
-    print(accuracy(data,bb))
+    bb = best_weapons_and_total_kills(data[0])
+    print(accuracy(data[0],bb))
