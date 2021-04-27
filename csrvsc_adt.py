@@ -101,53 +101,100 @@ class RecommendationADT:
 
     def __init__(self, adtid=0):
         self.__id = adtid
-        self.__head = None
-        self.__tail = None
-        self.__length = 0
-
-    def add_to_head(self, data):
-        """
-        Adds data about new match to the start of the list.
-        """
-        pass
-
-    def add_to_tail(self, data):
-        """
-        Adds data about new match to the end of the list.
-        """
-        pass
-
-    def remove_match(self, index: int):
-        """
-        Removes match with corresonding index.
-        """
-        pass
-
-    def __getitem__(self, coord_tuple: tuple):
-        """
-        Gets a particular piece of information about the match.
-        coord_tuple - (match, data_unit).
-        """
-        pass
-
-    def get_match(self, match: int):
-        """
-        Returns stated match.
-        """
-        pass
+        self.__data = Array(6)
 
     def get_id(self):
         """
-        Returns ADT object's id.
+        Returns the ADT's id.
+        """
+        pass
+
+    def get_winlose(self):
+        """
+        Returns if there is win or lose.
+        True - win
+        False - loss.
+        """
+        pass
+
+    def get_bombpln(self):
+        """
+        Returns if the bomb was planted.
+        True - win
+        False - loss.
+        """
+        pass
+
+    def get_enemies_alive(self):
+        """
+        Returns how many enemies alive.
+        """
+        pass
+
+    def get_teammate_alive(self):
+        """
+        Returns how many teammates alive.
+        """
+        pass
+
+    def get_enemies_buy(self):
+        """
+        Returns values from 0 to 5:
+        0 - "raw pistols"
+        5 - "full buy"
+        """
+        pass
+
+    def get_mid_sum(self):
+        """
+        Returns the middle sum of the money per player of the
+        enemy's team.
+        """
+        pass
+
+    def set_winlose(self):
+        """
+        Sets if there is win or lose.
+        True - win
+        False - loss.
+        """
+        pass
+
+    def set_bombpln(self):
+        """
+        Sets if the bomb was planted.
+        True - win
+        False - loss.
+        """
+        pass
+
+    def set_enemies_alive(self):
+        """
+        Sets how many enemies alive.
+        """
+        pass
+
+    def set_teammate_alive(self):
+        """
+        Sets how many teammates alive.
+        """
+        pass
+
+    def set_enemies_buy(self):
+        """
+        Sets values from 0 to 5:
+        0 - "raw pistols"
+        5 - "full buy"
+        """
+        pass
+
+    def set_mid_sum(self):
+        """
+        Sets the middle sum of the money per player of the
+        enemy's team.
         """
         pass
 
 
-class Node:
-    """
-    Node for RecommendationADT.
-    """
-
-    def __init__(self, data):
-        self._data = Array(0)
-        self.next_element = None
+if __name__ == '__main__':
+    pass
