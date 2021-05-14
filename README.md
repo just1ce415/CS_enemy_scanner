@@ -1,8 +1,8 @@
-# CS_rival_scanner
+# CS Rival Scanner
 Provides useful information on your live enemy by analysing statisctics.
 
 ## Table of contents
-#### [CS_rival_scanner](#cs_rival_scanner)
+#### [CS Rival Scanner](#cs-rival-scanner)
 
 #### [Table of contents](#table-of-contents)
 
