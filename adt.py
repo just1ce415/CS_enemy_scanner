@@ -9,8 +9,58 @@ from arrays import Array, Array2D
 class RecomendationADT:
     """
     """
-    def __init__(self):
-        self.data = Array()
+    def __init__(self, map):
+        self.data = Array(10)
+        self.data[5] = {
+            1: (300, 240),
+            2: (420, 1200),
+            3: (660, 2590),
+            4: (420, 3200),
+            5: (260, 4660)
+        }
+        self.data[7] = 4000
+        self.data[8] = 0
+        self.data[9] = map
+        self.lose_dict = {
+            1: 1400,
+            2: 1900,
+            3: 2400,
+            4: 2900,
+            5: 3400,
+        }
+    
+    def process(self, win_lose, round_end, bomb_planted, enemies_alive,
+            mates_alive, last_round_buy, knife_kill):
+        """
+        """
+        self.data[0] = win_lose
+        self.data[1] = round_end
+        self.data[2] = bomb_planted
+        self.data[3] = enemies_alive
+        self.data[4] = mates_alive
+        self.data[6] = knife_kill
+        kill_money = self.data[5][last_round_buy][0]*(5 - mates_alive) + 1500*knife_kill
+        money_lost = -self.data[5][last_round_buy][1]*(5 - enemies_alive)
+        self.data[7] += kill_money + money_lost
+        if self.data[0]:
+            self.data[8] = 0
+            if self.data[1] == 1 or self.data[1] == 2:
+                self.data[7] += 3250*5
+            elif self.data[1] == 3 or self.data[1] == 4:
+                self.data[7] += 3500*5 + 300
+        else:
+            self.data[8] += 1
+            if self.data[1] == 1:
+                pass
+
+        
+            pass
+                
+        
+    def advice(self):
+        """
+        """
+        pass
 
 
 class Player:
