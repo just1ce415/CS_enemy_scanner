@@ -33,5 +33,5 @@ def start(link, map):
 def predictor():
     pass
 
-if __name__ == "__main__":
-    print(start("https://steamcommunity.com/profiles/76561198880579276/"))
+# if __name__ == "__main__":
+#     print(start("https://steamcommunity.com/profiles/76561198880579276/", "mirage"))

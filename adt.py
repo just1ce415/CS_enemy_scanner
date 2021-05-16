@@ -1,19 +1,20 @@
 """
 """
 
-from steam_api import get_data_from_steam
+from steam_api import accuracy, get_data_from_steam
 from soup import site_parsing
 from arrays import Array, Array2D
+import re
 
 
 class RecomendationADT:
     """
     """
-    def __init__(self, map):
-        self.data = Array(10)
+    def __init__(self, map, enemy_side):
+        self.data = Array(11)
         self.data[5] = {
             1: (300, 240),
-            2: (420, 1200),
+            2: (420, 1000),
             3: (660, 2590),
             4: (420, 3200),
             5: (260, 4660)
@@ -21,7 +22,9 @@ class RecomendationADT:
         self.data[7] = 4000
         self.data[8] = 0
         self.data[9] = map
+        self.data[10] = enemy_side
         self.lose_dict = {
+            0: 0,
             1: 1400,
             2: 1900,
             3: 2400,
@@ -50,18 +53,112 @@ class RecomendationADT:
                 self.data[7] += 3500*5 + 300
         else:
             self.data[8] += 1
+            if self.data[8] > 5:
+                self.data[8] = 5
             if self.data[1] == 1:
+                self.data[7] += self.lose_dict[self.data[8]]*5
+                if self.data[10] == "TT" and self.data[2]:
+                    self.data[7] += 4300
+            elif self.data[1] == 2:
                 pass
-
-        
-            pass
+            elif self.data[1] == 3:
+                self.data[7] += self.lose_dict[self.data[8]]*5 + 4300
+            elif self.data[1] == 4:
+                self.data[7] += self.lose_dict[self.data[8]]*5
+        if self.data[7] < 0:
+            self.data[7] = 7500
+        if self.data[7] > 80000:
+            self.data[7] = 80000
                 
-        
     def advice(self):
         """
         """
-        pass
+        money_per_enemy = self.data[7] // 5
+        current_map = self.data[9]
+        if current_map == "mirage":
+            if money_per_enemy <= 1000:
+                advice = f"Enemy team has luck of money, approximately {money_per_enemy} per head, so brobably they woudn't buy anything. High chance of full eco round. Be carefully at tight places of this map, like palace, underpass or b apartments."
+            elif money_per_enemy <= 2000:
+                advice = f"Enemy team has a little money, approximately {money_per_enemy} per head, so brobably they will make eco round, but there is a chance to play against 1-2 smgs. Moderate chance of full eco round, low chance of force-buy. Be carefully at tight places of this map, like palace, underpass or b apartments. They can also push this spots."
+            elif money_per_enemy <= 3000:
+                advice = f"Enemy team has some money, approximately {money_per_enemy} per head, so brobably they will make force-buy round, but there is a chance of semi-full-buy round. High chance of force-buy round, low chance of semi-buy round. They can push some spots, like middle or underpass, so be carefull and play slowly."
+            elif money_per_enemy <= 4000:
+                advice = f"Enemy team has enough money, approximately {money_per_enemy} per head, so brobably they will make full-buy round, but there is a low chance to play against 1-2 smgs and rifles and a moderate chance of awp. High chance of full-buy round, low chance of semi-full-buy. Maybe its good decision to play slow round if your team has rifles, or fast if only smgs."
+            else:
+                advice = f"Enemy team has a lot of money, approximately {money_per_enemy} per head, so surely they will make full-buy round. Be aware of awper in middle, jungle, stairs and cat."
 
+        elif current_map == "inferno":
+            if money_per_enemy <= 1000:
+                advice = f"Enemy team has luck of money, approximately {money_per_enemy} per head, so brobably they woudn't buy anything. High chance of full eco round. Be carefully at tight places of this map, like banana, apartments. Be carefully while pushing."
+            elif money_per_enemy <= 2000:
+                advice = f"Enemy team has a little money, approximately {money_per_enemy} per head, so brobably they will make eco round, but there is a chance to play against 1-2 smgs. Moderate chance of full eco round, low chance of force-buy. Be carefully at tight places of this map, especially at banana. Giving control over this spot can cause lose of the round."
+            elif money_per_enemy <= 3000:
+                advice = f"Enemy team has some money, approximately {money_per_enemy} per head, so brobably they will make force-buy round, but there is a chance of semi-full-buy round. High chance of force-buy round, low chance of semi-buy round. They can push some spots, like banana or middle, so be carefull and play slowly."
+            elif money_per_enemy <= 4000:
+                advice = f"Enemy team has enough money, approximately {money_per_enemy} per head, so brobably they will make full-buy round, but there is a low chance to play against 1-2 smgs and rifles, and a moderate chance of awp. High chance of full-buy round, low chance of semi-full-buy. It can be too dangerous to retake banana yet, if you lose it."
+            else:
+                advice = f"Enemy team has a lot of money, approximately {money_per_enemy} per head, so surely they will make full-buy round. Be aware of awper in the middle and banana."
+
+        elif current_map == "dust_2":
+            if money_per_enemy <= 1000:
+                advice = f"Enemy team has luck of money, approximately {money_per_enemy} per head, so brobably they woudn't buy anything. High chance of full eco round. Be carefully at tight places of this map, like long doors, cat, lower and tunnel."
+            elif money_per_enemy <= 2000:
+                advice = f"Enemy team has a little money, approximately {money_per_enemy} per head, so brobably they will make eco round, but there is a chance to play against 1-2 smgs. Moderate chance of full eco round, low chance of force-buy. Be carefully at tight places of this map, like long doors, cat, lower and tunnel. They can also push this spots."
+            elif money_per_enemy <= 3000:
+                advice = f"Enemy team has some money, approximately {money_per_enemy} per head, so brobably they will make force-buy round, but there is a chance of semi-full-buy round. High chance of force-buy round, low chance of semi-buy round. They can push some spots, like mid doors, long or B plant(if TT), so be carefull and play slowly."
+            elif money_per_enemy <= 4000:
+                advice = f"Enemy team has enough money, approximately {money_per_enemy} per head, so brobably they will make full-buy round, but there is a low chance to play against 1-2 smgs and rifles and a moderate chance of awp. High chance of full-buy round, low chance of semi-full-buy. Maybe its good decision to play slow round if your team has rifles, or fast if only smgs. There can be awper on the long."
+            else:
+                advice = f"Enemy team has a lot of money, approximately {money_per_enemy} per head, so surely they will make full-buy round. Be aware of awper in the CT middle, long, car, back plat (if CT)."
+
+        elif current_map == "overpass":
+            if money_per_enemy <= 1000:
+                advice = f"Enemy team has luck of money, approximately {money_per_enemy} per head, so brobably they woudn't buy anything. High chance of full eco round. Be carefully at tight places of this map, like lower tunnels, toilets, water."
+            elif money_per_enemy <= 2000:
+                advice = f"Enemy team has a little money, approximately {money_per_enemy} per head, so brobably they will make eco round, but there is a chance to play against 1-2 smgs. Moderate chance of full eco round, low chance of force-buy. Be carefully at tight places of this map, like lower tunnels, toilets, water."
+            elif money_per_enemy <= 3000:
+                advice = f"Enemy team has some money, approximately {money_per_enemy} per head, so brobably they will make force-buy round, but there is a chance of semi-full-buy round. High chance of force-buy round, low chance of semi-buy round. They can push some spots, like short A, connector, or B plant (if TT), so be carefull and play slowly."
+            elif money_per_enemy <= 4000:
+                advice = f"Enemy team has enough money, approximately {money_per_enemy} per head, so brobably they will make full-buy round, but there is a low chance to play against 1-2 smgs and rifles and a moderate chance of awp. High chance of full-buy round, low chance of semi-full-buy. Be focused on middle control, because it's important part of overpass. Maybe its good decision to play slow round if your team has rifles, or fast if only smgs."
+            else:
+                advice = f"Enemy team has a lot of money, approximately {money_per_enemy} per head, so surely they will make full-buy round. Be aware of awper in A middle, train, long A and party."
+
+        elif current_map == "train":
+            if money_per_enemy <= 1000:
+                advice = f"Enemy team has luck of money, approximately {money_per_enemy} per head, so brobably they woudn't buy anything. High chance of full eco round. Be carefully at tight places of this map, like A main, alley, heaven."
+            elif money_per_enemy <= 2000:
+                advice = f"Enemy team has a little money, approximately {money_per_enemy} per head, so brobably they will make eco round, but there is a chance to play against 1-2 smgs. Could be SSG 008, so be carefull at spacious spots, like alley, B plant, heaven. Moderate chance of full eco round, low chance of force-buy."
+            elif money_per_enemy <= 3000:
+                advice = f"Enemy team has some money, approximately {money_per_enemy} per head, so brobably they will make force-buy round, but there is a chance of semi-full-buy round. High chance of force-buy round, low chance of semi-buy round. They can push some spots, like B ramp, B plant, A main or alley."
+            elif money_per_enemy <= 4000:
+                advice = f"Enemy team has enough money, approximately {money_per_enemy} per head, so brobably they will make full-buy round, but there is a low chance to play against 1-2 smgs and rifles and a moderate chance of awp. High chance of full-buy round, low chance of semi-full-buy. Maybe its good decision to play fast and push some tight spots, like alley or A main."
+            else:
+                advice = f"Enemy team has a lot of money, approximately {money_per_enemy} per head, so surely they will make full-buy round. Be aware of awper in the heaven, A plant, connector and B plant between trains."
+
+        elif current_map == "nuke":
+            if money_per_enemy <= 1000:
+                advice = f"Enemy team has luck of money, approximately {money_per_enemy} per head, so brobably they woudn't buy anything. High chance of full eco round. Be carefully at tight places of this map, like ramp, lobby and squeaky."
+            elif money_per_enemy <= 2000:
+                advice = f"Enemy team has a little money, approximately {money_per_enemy} per head, so brobably they will make eco round, but there is a chance to play against 1-2 smgs. Moderate chance of full eco round, low chance of force-buy. Be carefully, they can push lobby or outside (CT), A plant or vents (TT)."
+            elif money_per_enemy <= 3000:
+                advice = f"Enemy team has some money, approximately {money_per_enemy} per head, so brobably they will make force-buy round, but there is a chance of semi-full-buy round. High chance of force-buy round, low chance of semi-buy round. They can push some spots, like lobby or ramp, so be carefull and play slowly."
+            elif money_per_enemy <= 4000:
+                advice = f"Enemy team has enough money, approximately {money_per_enemy} per head, so brobably they will make full-buy round, but there is a low chance to play against 1-2 smgs and rifles and a moderate chance of awp. High chance of full-buy round, low chance of semi-full-buy. Maybe its good decision to play slow round if your team has rifles, or fast if only smgs."
+            else:
+                advice = f"Enemy team has a lot of money, approximately {money_per_enemy} per head, so surely they will make full-buy round. Be aware of outside if you have luck of money, awper on heaven."
+        else:
+            if money_per_enemy <= 1000:
+                advice = f"Enemy team has luck of money, approximately {money_per_enemy} per head, so brobably they woudn't buy anything. High chance of full eco round. Be carefully at tight places of this map, like B stairs, T mid, both plants."
+            elif money_per_enemy <= 2000:
+                advice = f"Enemy team has a little money, approximately {money_per_enemy} per head, so brobably they will make eco round, but there is a chance to play against 1-2 smgs. Moderate chance of full eco round, low chance of force-buy. Be carefully of tight places pushing, like like B stairs, T mid, both plants."
+            elif money_per_enemy <= 3000:
+                advice = f"Enemy team has some money, approximately {money_per_enemy} per head, so brobably they will make force-buy round, but there is a chance of semi-full-buy round. High chance of force-buy round, low chance of semi-buy round. They can push some spots, like middle or B stairs, so be carefull and play slowly."
+            elif money_per_enemy <= 4000:
+                advice = f"Enemy team has enough money, approximately {money_per_enemy} per head, so brobably they will make full-buy round, but there is a low chance to play against 1-2 smgs and rifles and a moderate chance of awp. High chance of full-buy round, low chance of semi-full-buy. Maybe its good decision to play slow round if your team has rifles, or fast if only smgs."
+            else:
+                advice = f"Enemy team has a lot of money, approximately {money_per_enemy} per head, so surely they will make full-buy round. Be aware of awper on A plant or ramp, heaven or backside B."
+
+        return advice
 
 class Player:
     """
@@ -122,9 +219,13 @@ class Player:
     def most_kills(self):
         '''
         '''
-        info_str = str(self.soup.find_all("tr", "p-row"))
-        # implement
-        pass
+        weapons_list = []
+        for i in range(3):
+            info_str = str(self.soup.find_all("tr", "p-row")[i]).split("\n")
+            weapon = re.search(r'/[a-z0-9_]+\.png+', info_str[2]).group(0)[1:-10]
+            accuracy = int(re.search(r'[0-9]+', info_str[10]).group(0)) / 100
+            weapons_list.append([accuracy, weapon])
+        return weapons_list
 
     def get_kd_steam(self):
         """
@@ -182,7 +283,3 @@ class Player:
         for i in list_of_weapons:
             i[0] = round(i[0] / total_kills,2)
         return list_of_weapons
-
-if __name__ == "__main__":
-    a = Player("https://steamcommunity.com/profiles/76561198880579276/")
-    a.get_rank()
