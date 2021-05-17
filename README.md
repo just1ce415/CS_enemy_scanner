@@ -114,7 +114,7 @@ Receives player's stats.
 3. ???
 4. PROFIT
 
-* Because of `step 1` (if that player didn't hide his account info) you will have access to this player's statistics which includes win-rate, accuracy and much more.
+* Because of `step 1` you will have access to this player's statistics which includes win-rate, accuracy and much more.
 * Thanks to `step 2` you'll be always aware about amount of money, which enemy team possesses, their tactics and most-likely their dislocation.
 
 ***
