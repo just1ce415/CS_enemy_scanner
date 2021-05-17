@@ -2,27 +2,26 @@
 """
 
 from arrays import Array, Array2D
-from adt import Player, RecomendationADT
+from adt import PlayerStats
 from copy import deepcopy
-
 
 def start(link, map):
     """
     """
-    enemy = Player(link)
+    enemy = PlayerStats(link)
     stats = Array(10)
-    site_stats = enemy.get_kd_adr()
+    site_stats = enemy.soup_get_other_stats()
     if enemy.steam_data != "-":
-        stats[3] = enemy.get_kd_steam()
-        best_weapons = enemy.get_bw_and_tk_steam()
+        stats[3] = enemy.steam_get_kd
+        best_weapons = enemy.steam_get_weapon_list()
         stats[6] = deepcopy(best_weapons)
-        stats[7] = enemy.get_accuracy_steam(best_weapons)
+        stats[7] = enemy.steam_add_accuracy(best_weapons)
     else:
         stats[3] = site_stats[1]
-        stats[6] = enemy.most_kills()
-        stats[7] = enemy.most_kills()
-    stats[0] = enemy.get_nickname()
-    stats[1] = enemy.get_rank()
+        stats[6] = None
+        stats[7] = enemy.soup_get_weapon_list()
+    stats[0] = enemy.soup_get_nickname
+    stats[1] = enemy.soup_get_rank
     stats[2] = site_stats[0]
     stats[4] = site_stats[4]
     stats[5] = site_stats[2]
@@ -30,8 +29,6 @@ def start(link, map):
     stats[9] = map
     return stats
         
-def predictor():
-    pass
 
 # if __name__ == "__main__":
 #     print(start("https://steamcommunity.com/profiles/76561198880579276/", "mirage"))

@@ -1,11 +1,13 @@
 """
 """
 
-from steam_api import accuracy, get_data_from_steam
-from soup import site_parsing
-from arrays import Array, Array2D
 import re
+import requests
+import json
+from bs4 import BeautifulSoup
+import cloudscraper
 
+from arrays import Array
 
 class RecomendationADT:
     """
@@ -160,24 +162,50 @@ class RecomendationADT:
 
         return advice
 
-class Player:
+class PlayerStats:
     """
     """
     def __init__(self, steam_link):
         self.link = steam_link
-        data_from_steam = get_data_from_steam(self.link)
-        link = f"https://csgostats.gg/player/{data_from_steam[1]}"
-        self.steam_data = data_from_steam[0]
-        self.soup = site_parsing(link)
+        steam_json, player_id = self.__steam_get_jsondata(self.link)
+        link = f"https://csgostats.gg/player/{player_id}"
+        self.steam_data = steam_json
+        self.soup = self.__site_parsing(link)
 
-    def get_nickname(self):
+    def __site_parsing(self, link: str):
+        '''
+        '''
+        scraper = cloudscraper.create_scraper()
+        with open("cache/site.html", "wb", ) as file:
+            file.write(scraper.get(link).content)
+        with open("cache/site.html") as file:
+            soup = BeautifulSoup(file, features="html.parser")
+        return soup
+
+    def __steam_get_jsondata(self, profile_link: str):
+        """ 
+        Returns json object with data from Steam Api
+        """
+        base_url = "http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/"
+        api_key = "6E41E51BEEC90F4A0A537907C62C7D35"
+        appid = 730
+        playerid = profile_link.split("/")[-2]
+        search_url = f"{base_url}?appid={appid}&key={api_key}&steamid={playerid}&format=json"
+        response = requests.get(search_url)
+        if str(response) == "<Response [200]>":
+            json_response = response.json()
+        else:
+            json_response = "-"
+        return (json_response, playerid)
+
+    def soup_get_nickname(self):
         '''
         '''
         title_lst = str(self.soup.title).split(" ")
         nickname = " ".join(title_lst[15:-12])
         return nickname
 
-    def get_rank(self):
+    def soup_get_rank(self):
         '''
         '''
         rank_str = str(list(self.soup.find_all('img'))[1])
@@ -196,7 +224,7 @@ class Player:
             rank = 0
         return rank
 
-    def get_kd_adr(self):
+    def soup_get_other_stats(self):
         '''
         '''
         info_str = str(self.soup.find_all("meta", property="og:description"))
@@ -216,7 +244,7 @@ class Player:
                 adr += info[4][i]
         return (win_rate, kpd, hltv_kpd, hs_rate, adr)
 
-    def most_kills(self):
+    def soup_get_weapon_list(self):
         '''
         '''
         weapons_list = []
@@ -227,7 +255,7 @@ class Player:
             weapons_list.append([accuracy, weapon])
         return weapons_list
 
-    def get_kd_steam(self):
+    def steam_get_kd(self):
         """
         Returns your kd in game
         """
@@ -236,7 +264,7 @@ class Player:
         total_kill_death = round(total_kills/total_death, 2)
         return total_kill_death
 
-    def get_adr_steam(self):
+    def steam_get_adr(self):
         """
         Returns your ADR
         """
@@ -255,7 +283,7 @@ class Player:
         total_adr = round(total_damage_done/total_rounds_played,2)
         return total_adr
 
-    def get_bw_and_tk_steam(self):
+    def steam_get_weapon_list(self):
         """
         Returns 3 best weapons and their accuracy
         """
@@ -276,10 +304,10 @@ class Player:
         list_of_weapons_kills = sorted(list_of_weapons_kills)[-3:]
         return list_of_weapons_kills
 
-    def get_accuracy_steam(self, list_of_weapons):
+    def steam_add_accuracy(self, list_of_weapons):
         """
         """
         total_kills = self.steam_data["playerstats"]['stats'][0]['value']
         for i in list_of_weapons:
-            i[0] = round(i[0] / total_kills,2)
+            i[0] = round(i[0] / total_kills, 2)
         return list_of_weapons
