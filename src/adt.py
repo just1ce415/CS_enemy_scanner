@@ -257,54 +257,63 @@ class PlayerStats:
         '''
         Returns player's rank.
         '''
-        rank_str = str(list(self.soup.find_all('img'))[1])
-        rank = rank_str.split("/")[5]
-        if rank == "images":
-            rank_str = str(list(self.soup.find_all('img'))[2])
-            rank = rank_str.split("/")[5][:2]
-        else:
-            rank = rank[:2]
-        if rank[-1] == ".":
-            rank = rank[0]
         try:
-            if not (1 <= int(rank) <= 18):
+            rank_str = str(list(self.soup.find_all('img'))[1])
+            rank = rank_str.split("/")[5]
+            if rank == "images":
+                rank_str = str(list(self.soup.find_all('img'))[2])
+                rank = rank_str.split("/")[5][:2]
+            else:
+                rank = rank[:2]
+            if rank[-1] == ".":
+                rank = rank[0]
+            try:
+                if not (1 <= int(rank) <= 18):
+                    rank = 0
+            except:
                 rank = 0
-        except:
-            rank = 0
-        return rank
+            return rank
+        except IndexError:
+            return 19
 
     def soup_get_other_stats(self):
         '''
         Returns other player's stats.
         '''
         info_str = str(self.soup.find_all("meta", property="og:description"))
-        info = info_str.split(">")[0].split(" ")[1:-1]
-        win_rate = info[0][-3:]
-        kpd = info[1][-4:]
-        hltv_kpd = info[2][-4:]
-        hs_rate = info[3][-3:]
-        adr = ''
-        param = 0
-        for i in range(len(info[4])):
-            if (info[4][i] == ':') and (not param):
-                param = 1
-            elif info[4][i] == "\\":
-                break
-            elif param:
-                adr += info[4][i]
-        return (win_rate, kpd, hltv_kpd, hs_rate, adr)
+        try:
+            info = info_str.split(">")[0].split(" ")[1:-1]
+            win_rate = info[0][-3:]
+            kpd = info[1][-4:]
+            hltv_kpd = info[2][-4:]
+            hs_rate = info[3][-3:]
+            adr = ''
+            param = 0
+            for i in range(len(info[4])):
+                if (info[4][i] == ':') and (not param):
+                    param = 1
+                elif info[4][i] == "\\":
+                    break
+                elif param:
+                    adr += info[4][i]
+            return (win_rate, kpd, hltv_kpd, hs_rate, adr)
+        except IndexError:
+            return (0, 0, 0, 0, 0)
 
     def soup_get_weapon_list(self):
         '''
         Returns list of guns and accuracy with them.
         '''
         weapons_list = []
-        for i in range(3):
-            info_str = str(self.soup.find_all("tr", "p-row")[i]).split("\n")
-            weapon = re.search(r'/[a-z0-9_]+\.png+', info_str[2]).group(0)[1:-10]
-            accuracy = int(re.search(r'[0-9]+', info_str[10]).group(0)) / 100
-            weapons_list.append([accuracy, weapon])
-        return weapons_list
+        try:
+            for i in range(3):
+                info_str = str(self.soup.find_all("tr", "p-row")[i]).split("\n")
+                weapon = re.search(r'/[a-z0-9_]+\.png+', info_str[2]).group(0)[1:-10]
+                accuracy = int(re.search(r'[0-9]+', info_str[10]).group(0)) / 100
+                weapons_list.append([accuracy, weapon])
+            return weapons_list
+        except IndexError:
+            return [[0, 42], [0, 42], [0, 42]]
 
     def steam_get_kd(self):
         """
