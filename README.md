@@ -8,15 +8,23 @@ Provides useful information on your live enemy by analysing statisctics. It's ha
 
 #### [Table of contents](#table-of-contents)
 
+#### [Reference](#reference)
+
 #### [Input and output](#input-and-output)
 
 #### [Program structure](#program-structure)
 
 #### [Usage](#usage)
 
+#### [Examples](#examples)
+
 #### [Credits](#credits)
 
 #### [Licence](#licence)
+
+***
+
+## Reference
 
 ***
 
@@ -32,6 +40,69 @@ Provides useful information on your live enemy by analysing statisctics. It's ha
 ***
 
 ## Program structure
+### `adt.py`
+Our own ADT's
+#### `RecomendationADT`
+Based on users input, chooses the best tip.
+
+* `process`
+Works with user's input so it becomes easier to make a summary and give a tip.
+
+* `advice`
+Based on user's input chooses among tips for the best one in this situation.
+
+#### `PlayerStats`
+Contains data about enemies.
+* `__site_parsing`
+Represents it's data on webpage.
+
+* `__steam_get_jsondata`
+Returns json object with data from Steam Api.
+
+* `soup_get_nickname`
+Returns player's nickname.
+
+* `soup_get_rank`
+Returns player's rank.
+
+* `soup_get_other_stats`
+Returns other player's stats.
+
+* `soup_get_weapon_list`
+Returns list of guns and accuracy with them.
+
+* `steam_get_kd`
+Returns your kd in game.
+
+* `steam_get_adr`
+Returns your ADR.
+
+* `steam_get_weapon_list`
+Returns 3 best weapons and their accuracy.
+
+* `steam_add_accuracy`
+Returns weapons' accuracy.
+
+### `application.py`
+Main module.
+
+* `index`
+Starting state of the webpage.
+
+* `handle_player_info`
+State when you can search for enemies stats.
+
+* `handle_recommendation`
+State when you can give your input about previous round.
+
+### `arrays.py`
+Contains ADT classes: `Array`, `Array2D`, `DynamicArray`
+
+### `get_status_module.py`
+This module gets player's stats.
+
+* `start`
+Receives player's stats.
 
 ***
 
@@ -48,8 +119,22 @@ Provides useful information on your live enemy by analysing statisctics. It's ha
 
 ***
 
+## Examples
+
+***
+
 ## Credits
+* Stepan Sushko - back-end dev.
+* Vladyslav Protsenko - front-end dev.
+* Vadym Vilhurin - general designer
+* Dmytro Kalitin - repository issues
+* Vadym Treskot - data analysis
 
 ***
 
 ## Licence
+MIT License
+
+Copyright (c) 2021 Angelo
+
+***
