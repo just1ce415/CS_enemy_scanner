@@ -3,32 +3,32 @@ Provides useful information on your live enemy by analysing statisctics. It's ha
 
 ***
 
-## Table of contents
+# Table of contents
 #### [CS Rival Scanner](#cs-rival-scanner)
 
-#### [Table of contents](##table-of-contents)
+#### [Table of contents](#table-of-contents)
 
-#### [Reference](##reference)
+#### [Reference](#reference)
 
-#### [Input and output](##input-and-output)
+#### [Input and output](#input-and-output)
 
-#### [Program structure](##program-structure)
+#### [Program structure](#program-structure)
 
-#### [Usage](##usage)
+#### [Usage](#usage)
 
-#### [Examples](##examples)
+#### [Examples](#examples)
 
-#### [Credits](##credits)
+#### [Credits](#credits)
 
-#### [Licence](##licence)
-
-***
-
-## Reference
+#### [Licence](#licence)
 
 ***
 
-## Input and output
+# Reference
+
+***
+
+# Input and output
 ### Input
 * Links of enemies' Steam profiles.
 * Results of every round.
@@ -39,7 +39,7 @@ Provides useful information on your live enemy by analysing statisctics. It's ha
 
 ***
 
-## Program structure
+# Program structure
 ### `adt.py`
 Our own ADT's
 #### `RecomendationADT`
@@ -106,7 +106,7 @@ Receives player's stats.
 
 ***
 
-## Usage
+# Usage
 1. Enter enemies' links to their Steam profiles.
 ![](https://github.com/just1ce415/CS_rival_scanner/blob/main/images/site_1.jpg)
 2. After every round fill up the form about it's results.
@@ -119,11 +119,11 @@ Receives player's stats.
 
 ***
 
-## Examples
+# Examples
 
 ***
 
-## Credits
+# Credits
 * Stepan Sushko - back-end dev.
 * Vladyslav Protsenko - front-end dev.
 * Vadym Vilhurin - general designer
@@ -132,7 +132,7 @@ Receives player's stats.
 
 ***
 
-## Licence
+# Licence
 MIT License
 
 Copyright (c) 2021 Angelo
