@@ -133,6 +133,11 @@ Receives player's stats.
 ***
 
 # Licence
+Information for players provided by:
+* https://csgostats.gg/
+* https://steamcommunity.com/'
+
+
 MIT License
 
 Copyright (c) 2021 Angelo, Vl-tb
