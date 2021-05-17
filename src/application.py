@@ -20,8 +20,8 @@ def index():
     """Starting state of the webpage."""
     return render_template("index.html")
 
-@app.route("/new", methods = ['POST'])
-def register():
+@app.route("/player_info", methods = ['POST'])
+def handle_player_info():
     """State when you can search for enemies stats."""
     global information_lst
 
@@ -128,8 +128,8 @@ def register():
                                          weapon_img52 = f"{information_lst[4][7][2][1]}.png")
 
 
-@app.route("/new2", methods = ['POST'])
-def register2():
+@app.route("/recommendation", methods = ['POST'])
+def handle_recommendation():
     """State when you can give your input about previous round."""
     global information_lst
     global counter
