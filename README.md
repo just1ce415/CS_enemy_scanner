@@ -37,7 +37,9 @@ Provides useful information on your live enemy by analysing statisctics. It's ha
 
 ## Usage
 1. Enter enemies' links to their Steam profiles.
+![](https://github.com/just1ce415/CS_rival_scanner/blob/main/images/site_1.jpg)
 2. After every round fill up the form about it's results.
+![](https://github.com/just1ce415/CS_rival_scanner/blob/main/images/site_4.jpg)
 3. ???
 4. PROFIT
 
