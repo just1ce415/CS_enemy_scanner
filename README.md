@@ -135,6 +135,6 @@ Receives player's stats.
 # Licence
 MIT License
 
-Copyright (c) 2021 Angelo
+Copyright (c) 2021 Angelo, Vl-tb
 
 ***
