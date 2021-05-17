@@ -1,4 +1,5 @@
 """
+Module with realization of ADT's.
 """
 
 import re
@@ -9,10 +10,21 @@ import cloudscraper
 
 from arrays import Array
 
+
 class RecomendationADT:
     """
+    Initializing ADT RecomendationADT, which, based on users input, chooses the best tip.
     """
     def __init__(self, map, enemy_side):
+        """
+        Initialize new obj of class RecomendationADT.
+
+        :type map: string
+        :param map: Name of the map, on which you will be playing.
+
+        :type enemy_side: string
+        :param enemy_side: Defines if your enemies are CT or TT
+        """
         self.data = Array(11)
         self.data[5] = {
             1: (300, 240),
@@ -37,6 +49,29 @@ class RecomendationADT:
     def process(self, win_lose, round_end, bomb_planted, enemies_alive,
             mates_alive, last_round_buy, knife_kill):
         """
+        Works with user's input so it becomes easier to make a summary and give a tip.
+
+        :type win_lose: bool
+        :param win_lose: Did your team win or loose
+
+        :type round_end: int
+        :param round_end: It defines how did the round end.
+        Depending on how it ended enemy will gain different amount of $.
+
+        :type bomb_planted: bool
+        :param bomb_planted: Defines if bomb was planted or not.
+
+        :type enemies_alive: int
+        :param enemies_alive: Defines, how many enemies were lucky to remain alive.
+
+        :type mates_alive: int
+        :param mates_alive: Defines, how many allies were lucky to remain alive.
+
+        :type last_ronud_buy: int
+        :param last_round_buy: Your subjective opinion about enemies' buy from previous round.
+
+        :type knife_kill: int
+        :param knife_kill: Amount of kills with knife from previous round.
         """
         self.data[0] = win_lose
         self.data[1] = round_end
@@ -74,6 +109,7 @@ class RecomendationADT:
                 
     def advice(self):
         """
+        Based on user's input chooses among tips for the best one in this situation.
         """
         money_per_enemy = self.data[7] // 5
         current_map = self.data[9]
@@ -164,8 +200,12 @@ class RecomendationADT:
 
 class PlayerStats:
     """
+    Initialize ADT PlayerStats which contains data about enemies.
     """
     def __init__(self, steam_link):
+        """
+        Initialize new obj of class PlayerStats, which will contain enemy's stats.
+        """
         self.link = steam_link
         steam_json, player_id = self.__steam_get_jsondata(self.link)
         link = f"https://csgostats.gg/player/{player_id}"
@@ -174,6 +214,10 @@ class PlayerStats:
 
     def __site_parsing(self, link: str):
         '''
+        Represents it's data on webpage.
+
+        :type link: string
+        :param link: It is a link of player.
         '''
         scraper = cloudscraper.create_scraper()
         with open("cache/site.html", "wb", ) as file:
@@ -184,7 +228,10 @@ class PlayerStats:
 
     def __steam_get_jsondata(self, profile_link: str):
         """ 
-        Returns json object with data from Steam Api
+        Returns json object with data from Steam Api.
+
+        :type profile_link: string
+        :param profile_link: It is a link of player.
         """
         base_url = "http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/"
         api_key = "6E41E51BEEC90F4A0A537907C62C7D35"
@@ -200,6 +247,7 @@ class PlayerStats:
 
     def soup_get_nickname(self):
         '''
+        Returns player's nickname.
         '''
         title_lst = str(self.soup.title).split(" ")
         nickname = " ".join(title_lst[15:-12])
@@ -207,6 +255,7 @@ class PlayerStats:
 
     def soup_get_rank(self):
         '''
+        Returns player's rank.
         '''
         rank_str = str(list(self.soup.find_all('img'))[1])
         rank = rank_str.split("/")[5]
@@ -226,6 +275,7 @@ class PlayerStats:
 
     def soup_get_other_stats(self):
         '''
+        Returns other player's stats.
         '''
         info_str = str(self.soup.find_all("meta", property="og:description"))
         info = info_str.split(">")[0].split(" ")[1:-1]
@@ -246,6 +296,7 @@ class PlayerStats:
 
     def soup_get_weapon_list(self):
         '''
+        Returns list of guns and accuracy with them.
         '''
         weapons_list = []
         for i in range(3):
@@ -257,7 +308,7 @@ class PlayerStats:
 
     def steam_get_kd(self):
         """
-        Returns your kd in game
+        Returns your kd in game.
         """
         total_kills = self.steam_data["playerstats"]['stats'][0]['value']
         total_death = self.steam_data["playerstats"]['stats'][1]["value"]
@@ -266,7 +317,7 @@ class PlayerStats:
 
     def steam_get_adr(self):
         """
-        Returns your ADR
+        Returns your ADR.
         """
         total_damage_done = 0
         total_rounds_played = 0
@@ -285,7 +336,7 @@ class PlayerStats:
 
     def steam_get_weapon_list(self):
         """
-        Returns 3 best weapons and their accuracy
+        Returns 3 best weapons and their accuracy.
         """
         list_of_weapons_kills = []
         for i in self.steam_data["playerstats"]['stats']:
@@ -306,6 +357,10 @@ class PlayerStats:
 
     def steam_add_accuracy(self, list_of_weapons):
         """
+        Returns weapons' accuracy.
+
+        :type list_of_weapons: list
+        :param list_of_weapons: List of best weapons and their accuracy of this player.
         """
         total_kills = self.steam_data["playerstats"]['stats'][0]['value']
         for i in list_of_weapons:

@@ -1,8 +1,10 @@
+"""
+Main module.
+"""
 from flask import Flask, render_template, request, url_for
 from get_stats_module import start
 from adt import RecomendationADT
 from gevent.pywsgi import WSGIServer
-
 
 
 app = Flask(__name__)
@@ -15,10 +17,12 @@ counter = 1
 
 @app.route("/")
 def index():
+    """Starting state of the webpage."""
     return render_template("index.html")
 
 @app.route("/new", methods = ['POST'])
 def register():
+    """State when you can search for enemies stats."""
     global information_lst
 
     name = request.form.get('nickname_url')
@@ -126,6 +130,7 @@ def register():
 
 @app.route("/new2", methods = ['POST'])
 def register2():
+    """State when you can give your input about previous round."""
     global information_lst
     global counter
     global add_info
