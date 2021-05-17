@@ -6,21 +6,21 @@ Provides useful information on your live enemy by analysing statisctics. It's ha
 ## Table of contents
 #### [CS Rival Scanner](#cs-rival-scanner)
 
-#### [Table of contents](#table-of-contents)
+#### [Table of contents](##table-of-contents)
 
-#### [Reference](#reference)
+#### [Reference](##reference)
 
-#### [Input and output](#input-and-output)
+#### [Input and output](##input-and-output)
 
-#### [Program structure](#program-structure)
+#### [Program structure](##program-structure)
 
-#### [Usage](#usage)
+#### [Usage](##usage)
 
-#### [Examples](#examples)
+#### [Examples](##examples)
 
-#### [Credits](#credits)
+#### [Credits](##credits)
 
-#### [Licence](#licence)
+#### [Licence](##licence)
 
 ***
 
