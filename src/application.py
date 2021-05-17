@@ -15,7 +15,7 @@ counter = 1
 
 @app.route("/")
 def index():
-    return render_template("1.html")
+    return render_template("index.html")
 
 @app.route("/new", methods = ['POST'])
 def register():
@@ -33,7 +33,7 @@ def register():
     player_info = start(name, "mirage")
     information_lst.append(player_info)
     if len(information_lst) == 1:
-        return render_template("1.html",your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg",
+        return render_template("index.html",your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg",
                                         kd = information_lst[0][3], win_rate = information_lst[0][2], adr = information_lst[0][4],
                                         headshot = information_lst[0][8], accur = information_lst[0][7][0][0],
                                         accur2 = information_lst[0][7][1][0], accur3 = information_lst[0][7][2][0],
@@ -41,7 +41,7 @@ def register():
                                         weapon_img12 = f"{information_lst[0][7][2][1]}.png")
 
     if len(information_lst) == 2:
-        return render_template("1.html", your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg",
+        return render_template("index.html", your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg",
                                          kd = information_lst[0][3], win_rate = information_lst[0][2], adr = information_lst[0][4],
                                          headshot = information_lst[0][8], accur = information_lst[0][7][0][0],
                                          accur2 = information_lst[0][7][1][0], accur3 = information_lst[0][7][2][0],
@@ -53,7 +53,7 @@ def register():
                                          weapon_img12 = f"{information_lst[0][7][2][1]}.png", weapon_img20 = f"{information_lst[1][7][0][1]}.png",
                                          weapon_img21 = f"{information_lst[1][7][1][1]}.png", weapon_img22 = f"{information_lst[1][7][2][1]}.png")
     if len(information_lst) == 3:
-        return render_template("1.html", your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg",
+        return render_template("index.html", your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg",
                                          kd = information_lst[0][3], win_rate = information_lst[0][2], adr = information_lst[0][4],
                                          headshot = information_lst[0][8], accur = information_lst[0][7][0][0],
                                          accur2 = information_lst[0][7][1][0], accur3 = information_lst[0][7][2][0],
@@ -71,7 +71,7 @@ def register():
                                          weapon_img30 = f"{information_lst[2][7][0][1]}.png", weapon_img31 = f"{information_lst[2][7][1][1]}.png",
                                          weapon_img32 = f"{information_lst[2][7][2][1]}.png")
     if len(information_lst) == 4:
-        return render_template("1.html", your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg",
+        return render_template("index.html", your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg",
                                          kd = information_lst[0][3], win_rate = information_lst[0][2], adr = information_lst[0][4],
                                          headshot = information_lst[0][8], accur = information_lst[0][7][0][0],
                                          accur2 = information_lst[0][7][1][0], accur3 = information_lst[0][7][2][0],
@@ -94,7 +94,7 @@ def register():
                                          weapon_img32 = f"{information_lst[2][7][2][1]}.png", weapon_img40 = f"{information_lst[3][7][0][1]}.png",
                                          weapon_img41 = f"{information_lst[3][7][1][1]}.png", weapon_img42 = f"{information_lst[3][7][2][1]}.png")
     if len(information_lst) == 5:
-        return render_template("1.html", your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg",
+        return render_template("index.html", your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg",
                                          kd = information_lst[0][3], win_rate = information_lst[0][2], adr = information_lst[0][4],
                                          headshot = information_lst[0][8], accur = information_lst[0][7][0][0],
                                          accur2 = information_lst[0][7][1][0], accur3 = information_lst[0][7][2][0],
@@ -171,23 +171,23 @@ def register2():
 
     print("-----------------------------------------------")
     if len(information_lst) == 0:
-        return render_template("1.html")
+        return render_template("index.html")
     if len(information_lst) == 1:
-        return render_template("1.html", your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg", information = advice)
+        return render_template("index.html", your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg", information = advice)
     if len(information_lst) == 2:
-        return render_template("1.html", your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg",
+        return render_template("index.html", your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg",
                                          your_name2 = information_lst[1][0], source_img2 = f"{information_lst[1][1]}.jpg", information = advice)
     if len(information_lst) == 3:
-        return render_template("1.html", your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg",
+        return render_template("index.html", your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg",
                                          your_name2 = information_lst[1][0], source_img2 = f"{information_lst[1][1]}.jpg",
                                          your_name3 = information_lst[2][0], source_img3 = f"{information_lst[2][1]}.jpg", information = advice)
     if len(information_lst) == 4:
-        return render_template("1.html", your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg",
+        return render_template("index.html", your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg",
                                          your_name2 = information_lst[1][0], source_img2 = f"{information_lst[1][1]}.jpg",
                                          your_name3 = information_lst[2][0], source_img3 = f"{information_lst[2][1]}.jpg",
                                          your_name4 = information_lst[3][0], source_img4 = f"{information_lst[3][1]}.jpg", information = advice)
     if len(information_lst) == 5:
-        return render_template("1.html", your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg",
+        return render_template("index.html", your_name = information_lst[0][0], source_img = f"{information_lst[0][1]}.jpg",
                                          your_name2 = information_lst[1][0], source_img2 = f"{information_lst[1][1]}.jpg",
                                          your_name3 = information_lst[2][0], source_img3 = f"{information_lst[2][1]}.jpg",
                                          your_name4 = information_lst[3][0], source_img4 = f"{information_lst[3][1]}.jpg",
