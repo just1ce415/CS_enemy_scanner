@@ -125,10 +125,10 @@ Receives player's stats.
 
 # Credits
 * Stepan Sushko - back-end dev.
-* Vladyslav Protsenko - front-end dev.
-* Vadym Vilhurin - general designer
+* Vladyslav Protsenko - data analysis, software dev, leader.
+* Vadym Vilhurin - general designer, front-end dev.
 * Dmytro Kalitin - repository issues
-* Vadym Treskot - data analysis
+* Vadym Treskot - logic structures and schema dev.
 
 ***
 
