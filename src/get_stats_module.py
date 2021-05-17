@@ -1,4 +1,5 @@
 """
+This module gets player's stats.
 """
 
 from arrays import Array, Array2D
@@ -7,6 +8,13 @@ from copy import deepcopy
 
 def start(link, map):
     """
+    Receives player's stats.
+
+    :type link: string
+    :param link: Palyers link.
+
+    :type map: string
+    :param map: Name of the current map.
     """
     enemy = PlayerStats(link)
     stats = Array(10)
