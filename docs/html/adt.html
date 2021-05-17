@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>adt module &#8212; CS Rival Scanner 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="application module" href="application.html" />
+    <link rel="prev" title="src" href="modules.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="application.html" title="application module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="src"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS Rival Scanner 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">src</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">adt module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-adt">
+<span id="adt-module"></span><h1>adt module<a class="headerlink" href="#module-adt" title="Permalink to this headline">¶</a></h1>
+<p>Module with realization of ADT’s.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="adt.PlayerStats">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">adt.</span></span><span class="sig-name descname"><span class="pre">PlayerStats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">steam_link</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adt.PlayerStats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Initialize ADT PlayerStats which contains data about enemies.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="adt.PlayerStats.soup_get_nickname">
+<span class="sig-name descname"><span class="pre">soup_get_nickname</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adt.PlayerStats.soup_get_nickname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns player’s nickname.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="adt.PlayerStats.soup_get_other_stats">
+<span class="sig-name descname"><span class="pre">soup_get_other_stats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adt.PlayerStats.soup_get_other_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns other player’s stats.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="adt.PlayerStats.soup_get_rank">
+<span class="sig-name descname"><span class="pre">soup_get_rank</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adt.PlayerStats.soup_get_rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns player’s rank.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="adt.PlayerStats.soup_get_weapon_list">
+<span class="sig-name descname"><span class="pre">soup_get_weapon_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adt.PlayerStats.soup_get_weapon_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns list of guns and accuracy with them.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="adt.PlayerStats.steam_add_accuracy">
+<span class="sig-name descname"><span class="pre">steam_add_accuracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_of_weapons</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adt.PlayerStats.steam_add_accuracy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns weapons’ accuracy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>list_of_weapons</strong> (<em>list</em>) – List of best weapons and their accuracy of this player.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="adt.PlayerStats.steam_get_adr">
+<span class="sig-name descname"><span class="pre">steam_get_adr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adt.PlayerStats.steam_get_adr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns your ADR.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="adt.PlayerStats.steam_get_kd">
+<span class="sig-name descname"><span class="pre">steam_get_kd</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adt.PlayerStats.steam_get_kd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns your kd in game.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="adt.PlayerStats.steam_get_weapon_list">
+<span class="sig-name descname"><span class="pre">steam_get_weapon_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adt.PlayerStats.steam_get_weapon_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns 3 best weapons and their accuracy.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="adt.RecomendationADT">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">adt.</span></span><span class="sig-name descname"><span class="pre">RecomendationADT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enemy_side</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adt.RecomendationADT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Initializing ADT RecomendationADT, which, based on users input, chooses the best tip.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="adt.RecomendationADT.advice">
+<span class="sig-name descname"><span class="pre">advice</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adt.RecomendationADT.advice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Based on user’s input chooses among tips for the best one in this situation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="adt.RecomendationADT.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">win_lose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bomb_planted</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enemies_alive</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mates_alive</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_round_buy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">knife_kill</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adt.RecomendationADT.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Works with user’s input so it becomes easier to make a summary and give a tip.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>win_lose</strong> (<em>bool</em>) – Did your team win or loose</p></li>
+<li><p><strong>round_end</strong> (<em>int</em>) – It defines how did the round end.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Depending on how it ended enemy will gain different amount of $.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bomb_planted</strong> (<em>bool</em>) – Defines if bomb was planted or not.</p></li>
+<li><p><strong>enemies_alive</strong> (<em>int</em>) – Defines, how many enemies were lucky to remain alive.</p></li>
+<li><p><strong>mates_alive</strong> (<em>int</em>) – Defines, how many allies were lucky to remain alive.</p></li>
+<li><p><strong>last_round_buy</strong> – Your subjective opinion about enemies’ buy from previous round.</p></li>
+<li><p><strong>knife_kill</strong> (<em>int</em>) – Amount of kills with knife from previous round.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="modules.html"
+                        title="previous chapter">src</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="application.html"
+                        title="next chapter">application module</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/adt.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="application.html" title="application module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="src"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS Rival Scanner 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >src</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">adt module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Second Team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.1.
+    </div>
+  </body>
+</html>
