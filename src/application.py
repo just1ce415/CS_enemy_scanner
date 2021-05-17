@@ -17,8 +17,8 @@ counter = 1
 def index():
     return render_template("index.html")
 
-@app.route("/new", methods = ['POST'])
-def register():
+@app.route("/player_info", methods = ['POST'])
+def handle_player_info():
     global information_lst
 
     name = request.form.get('nickname_url')
@@ -124,8 +124,8 @@ def register():
                                          weapon_img52 = f"{information_lst[4][7][2][1]}.png")
 
 
-@app.route("/new2", methods = ['POST'])
-def register2():
+@app.route("/recommendation", methods = ['POST'])
+def handle_recommendation():
     global information_lst
     global counter
     global add_info
