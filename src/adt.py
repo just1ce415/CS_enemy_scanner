@@ -234,7 +234,7 @@ class PlayerStats:
         :param profile_link: It is a link of player.
         """
         base_url = "http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/"
-        api_key = "6E41E51BEEC90F4A0A537907C62C7D35"
+        api_key = "YOUR KEY"
         appid = 730
         playerid = profile_link.split("/")[-2]
         search_url = f"{base_url}?appid={appid}&key={api_key}&steamid={playerid}&format=json"
